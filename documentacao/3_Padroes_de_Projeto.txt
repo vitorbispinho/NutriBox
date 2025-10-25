@@ -1,0 +1,37 @@
+Nesta seção são descritos os padrões de projeto aplicáveis à implementação conceitual do sistema NutriBox, com justificativa do uso e exemplos de pseudocódigo.
+
+O primeiro padrão aplicado é o Repository. O problema que esse padrão resolve é o acoplamento direto entre a lógica de negócio e os detalhes de persistência. Ao definir interfaces de repositório, o serviço de aplicação interage com abstrações, permitindo trocar o mecanismo de armazenamento sem impactar a lógica. No contexto da NutriBox, recomenda-se criar repositórios como UserRepository, OrderRepository e MealRepository. Pseudocódigo de exemplo:
+interface UserRepository {
+    salvar(usuario)
+    buscarPorId(id)
+    listarPorEmail(email)
+}
+class PostgresUserRepository implements UserRepository {
+    salvar(usuario) { executar INSERT ... }
+    buscarPorId(id) { executar SELECT ... }
+}
+
+O segundo padrão é o Factory Method. Esse padrão resolve a criação de objetos complexos centralizando a lógica de instanciamento. Para NutriBox esse padrão é útil para criar objetos de marmita com diferentes configurações (porção, suplementos, restrições alérgicas). Em vez de espalhar condicionais por todo o código, um factory produz a instância adequada com base nos parâmetros:
+abstract class MarmitaFactory {
+    criarMarmita(tipo, preferencias) 
+}
+class MarmitaProteicaFactory extends MarmitaFactory {
+    criarMarmita(tipo, preferencias) { return nova MarmitaProteica(...) }
+}
+
+O terceiro padrão é Strategy. Esse padrão permite trocar algoritmos de forma intercambiável em tempo de execução. Um uso prático é o cálculo de preço final da assinatura, onde diferentes estratégias podem aplicar descontos promocionais, cupons ou regras de fidelidade:
+interface CalculoPrecoStrategy {
+    calcular(precoBase, contexto)
+}
+class DescontoFidelidade implements CalculoPrecoStrategy {
+    calcular(precoBase, contexto) { return precoBase * 0.90 }
+}
+class PromocaoSazonal implements CalculoPrecoStrategy {
+    calcular(precoBase, contexto) { return precoBase - contexto.valorPromocional }
+}
+class Assinatura {
+    setEstrategia(strategy)
+    calcularPreco(precoBase) { return strategy.calcular(precoBase, this.contexto) }
+}
+
+Adicionalmente, padrões complementares como Singleton podem ser empregados para gerenciar instâncias únicas onde cabível, por exemplo para o pool de conexões ao banco de dados ou para objetos de configuração global. O uso combinado desses padrões melhora a legibilidade, testabilidade e a capacidade de evolução do sistema.

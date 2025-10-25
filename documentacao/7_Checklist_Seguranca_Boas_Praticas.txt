@@ -1,0 +1,14 @@
+Checklist de segurança e boas práticas para NutriBox, destinado a orientar a construção e revisão do sistema antes da entrega:
+
+- Autenticação e autorização: implementar autenticação robusta com senhas hashadas (bcrypt) e tokens JWT para sessões; usar refresh tokens com controle de revogação; aplicar controle de acesso por papeis e escopos nas APIs.
+- Validação e sanitização: validar todas as entradas no servidor; sanitizar dados para evitar injeção de SQL, XSS e outras vulnerabilidades comuns.
+- Transporte seguro: exigir HTTPS em todas as comunicações, configurar HSTS e usar certificados válidos.
+- Gestão de segredos: não armazenar segredos no repositório; utilizar GitHub Secrets ou um serviço de gerenciamento de segredos; rotação periódica de chaves sensíveis.
+- Logs e monitoramento: registrar eventos importantes e erros com logs estruturados; configurar monitoramento de performance e alertas para erros críticos e picos de latência.
+- Backup e recuperação: políticas de backup regulares do banco de dados, com testes de restauração periódicos; definir RTO e RPO aceitáveis para o negócio.
+- Proteção de dados pessoais: armazenar apenas os dados necessários, criptografar dados sensíveis em repouso quando aplicável e seguir boas práticas de privacidade.
+- Ciclo de testes: incluir testes unitários, testes de integração e testes automatizados que rodem no pipeline de CI; complementar com análises de segurança estática e, quando possível, testes de penetração.
+- Dependências e supply chain: manter dependências atualizadas, usar ferramentas de verificação de vulnerabilidades e limitar permissões de execução em ambientes de build.
+- Procedimentos de emergência: planos claros para rollback de deploy, comunicação interna e com clientes em caso de incidentes de segurança ou falhas críticas.
+
+Seguir este checklist ajuda a reduzir riscos operacionais e garante que o MVP esteja alinhado com práticas de engenharia responsáveis.

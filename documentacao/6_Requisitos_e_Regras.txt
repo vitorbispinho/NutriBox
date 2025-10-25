@@ -1,0 +1,11 @@
+Este documento apresenta requisitos funcionais e não funcionais, regras de negócio e histórias de usuário para o MVP NutriBox.
+
+Requisitos funcionais principais incluem: cadastro de usuário com perfis e preferências, autenticação e recuperação de senha, exibição de catálogo de marmitas, personalização de marmitas com suplementos, gestão de carrinho, finalização de compra com integração a gateway de pagamento, criação e gerenciamento de assinaturas (escolha de periodicidade, pausa e cancelamento), acompanhamento de pedidos em tempo real, histórico de pedidos e painel administrativo básico para gerir cardápio e pedidos.
+
+Requisitos não funcionais: tempo de resposta aceitável para páginas principais (< 2s em redes móveis), disponibilidade alvo de 99,5% para a API, armazenamento seguro de dados de usuários em conformidade com práticas de segurança, escalabilidade horizontal do back-end via containers, testes automatizados cobrindo casos críticos e logs estruturados para auditoria e investigação de incidentes.
+
+Regras de negócio relevantes: um usuário só pode ter uma assinatura ativa do mesmo plano ao mesmo tempo; promoções não são cumulativas a menos que explicitamente indicado; pedidos agendados devem respeitar prazos mínimos de preparação e logística; reembolsos são concedidos conforme política de qualidade e evidências fotográficas quando aplicável; suplementos só podem ser combinados com marmitas compatíveis (regra definida no domínio).
+
+Histórias de usuário (exemplos): como cliente, quero me cadastrar para poder comprar marmitas e gerenciar minhas assinaturas; como cliente, quero adicionar suplementos às minhas marmitas para ajustar meus objetivos nutricionais; como administrador, quero adicionar novos itens ao cardápio e definir estoque para evitar vendas de itens esgotados; como cliente, quero pausar minha assinatura temporariamente sem perder meu histórico; como cliente, quero ser notificado quando meu pedido for enviado para entrega.
+
+Esses requisitos e regras compõem a base para o backlog do MVP e permitem priorizar entregas incrementais.
